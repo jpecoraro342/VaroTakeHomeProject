@@ -31,20 +31,46 @@ class NowPlayingViewModel {
             return isFiltered ? "Show All" : "Filter Favorites"
         }
     }
-    
+}
+
+// MARK: Public
+
+extension NowPlayingViewModel {
     public func numberOfItems() -> Int {
         return isFiltered ? filteredMovies.count : movies.count
     }
-    
+
     public func getCellViewModel(at indexPath: IndexPath) -> MovieCellViewModel {
         let movie = isFiltered ? filteredMovies[indexPath.row] : movies[indexPath.row]
-        
+
         return MovieCellViewModel(
             id: "\(movie.id)",
             title: movie.title,
             posterUrl: posterURL(posterPath: movie.posterPath),
             isFavorite: favorites.contains("\(movie.id)"),
             toggleFavorite: { self.toggleFavorite(movieId: $0) })
+    }
+
+    public func updateNowPlaying() {
+        Task {
+            movies = await MovieDbApiService.shared.fetchNowPlaying()
+            onUpdate?()
+        }
+    }
+
+    public func toggleFilterFavorites() {
+        isFiltered = !isFiltered
+        updateFiltered()
+        onUpdate?()
+    }
+}
+
+// MARK: Private
+extension NowPlayingViewModel {
+    private static let basePosterURL = URL(string: "https://image.tmdb.org/t/p/original")!
+    
+    private func posterURL(posterPath: String) -> URL {
+        return Self.basePosterURL.appending(path: posterPath)
     }
 
     private func toggleFavorite(movieId: String) {
@@ -59,30 +85,9 @@ class NowPlayingViewModel {
         self.updateFiltered()
         self.onUpdate?()
     }
-    
-    public func updateNowPlaying() {
-        Task {
-            movies = await MovieDbApiService.shared.fetchNowPlaying()
-            onUpdate?()
-        }
-    }
-
-    public func toggleFilterFavorites() {
-        isFiltered = !isFiltered
-        updateFiltered()
-        onUpdate?()
-    }
 
     private func updateFiltered() {
         filteredMovies = movies.filter({ favorites.contains("\($0.id)") })
-    }
-}
-
-extension NowPlayingViewModel {
-    private static let basePosterURL = URL(string: "https://image.tmdb.org/t/p/original")!
-    
-    private func posterURL(posterPath: String) -> URL {
-        return Self.basePosterURL.appending(path: posterPath)
     }
 }
 

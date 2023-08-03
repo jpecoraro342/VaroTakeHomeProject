@@ -22,11 +22,9 @@ actor ImageDataService : NSObject {
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            
-            var image : UIImage? = nil
-            image =  UIImage(data: data)
-            
-            if let image = image {
+
+            // TODO: Move magic numbers for image size somewhere central or pass them in
+            if let image = UIImage(data: data)?.resize(size: CGSize(width: 150, height: 225)) {
                 images[url] = image
                 return image
             }

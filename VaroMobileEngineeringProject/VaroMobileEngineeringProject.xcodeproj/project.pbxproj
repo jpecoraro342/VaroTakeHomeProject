@@ -18,6 +18,7 @@
 		158798782A7BE9DA004407FE /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158798772A7BE9DA004407FE /* URLExtensions.swift */; };
 		1587987A2A7BF659004407FE /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158798792A7BF659004407FE /* MovieCollectionViewCell.swift */; };
 		1587987C2A7BF6D4004407FE /* UICollectionViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587987B2A7BF6D4004407FE /* UICollectionViewCellExtensions.swift */; };
+		1587987E2A7C3354004407FE /* UIImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587987D2A7C3354004407FE /* UIImageResize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		158798772A7BE9DA004407FE /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		158798792A7BF659004407FE /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		1587987B2A7BF6D4004407FE /* UICollectionViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCellExtensions.swift; sourceTree = "<group>"; };
+		1587987D2A7C3354004407FE /* UIImageResize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageResize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				158798772A7BE9DA004407FE /* URLExtensions.swift */,
 				1587987B2A7BF6D4004407FE /* UICollectionViewCellExtensions.swift */,
+				1587987D2A7C3354004407FE /* UIImageResize.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				158798782A7BE9DA004407FE /* URLExtensions.swift in Sources */,
 				158798722A7BE277004407FE /* NowPlayingViewModel.swift in Sources */,
 				1587987C2A7BF6D4004407FE /* UICollectionViewCellExtensions.swift in Sources */,
+				1587987E2A7C3354004407FE /* UIImageResize.swift in Sources */,
 				1587985E2A7BDFEB004407FE /* NowPlayingVC.swift in Sources */,
 				1587985A2A7BDFEB004407FE /* AppDelegate.swift in Sources */,
 				1587985C2A7BDFEB004407FE /* SceneDelegate.swift in Sources */,
