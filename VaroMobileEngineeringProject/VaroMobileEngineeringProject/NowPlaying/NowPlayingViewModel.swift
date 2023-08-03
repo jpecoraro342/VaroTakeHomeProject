@@ -21,18 +21,23 @@ class NowPlayingViewModel {
     }
     
     private var movies : [Movie] = []
+
+    private var filteredMovies : [Movie] = []
+
+    private var isFiltered : Bool = false
+
+    public var filterTitle : String {
+        get {
+            return isFiltered ? "Show All" : "Filter Favorites"
+        }
+    }
     
     public func numberOfItems() -> Int {
-        return movies.count
+        return isFiltered ? filteredMovies.count : movies.count
     }
     
     public func getCellViewModel(at indexPath: IndexPath) -> MovieCellViewModel {
-        guard indexPath.row < movies.count else {
-            print("something really bad happened")
-            return MovieCellViewModel(id: "", title: "", posterUrl: Self.basePosterURL, isFavorite: false, toggleFavorite: { _ in })
-        }
-        
-        let movie = movies[indexPath.row]
+        let movie = isFiltered ? filteredMovies[indexPath.row] : movies[indexPath.row]
         
         return MovieCellViewModel(
             id: "\(movie.id)",
@@ -42,7 +47,7 @@ class NowPlayingViewModel {
             toggleFavorite: { self.toggleFavorite(movieId: $0) })
     }
 
-    public func toggleFavorite(movieId: String) {
+    private func toggleFavorite(movieId: String) {
         var favorites = self.favorites
         if favorites.contains(movieId) {
             favorites.remove(movieId)
@@ -51,6 +56,7 @@ class NowPlayingViewModel {
         }
 
         self.favorites = favorites
+        self.updateFiltered()
         self.onUpdate?()
     }
     
@@ -59,6 +65,16 @@ class NowPlayingViewModel {
             movies = await MovieDbApiService.shared.fetchNowPlaying()
             onUpdate?()
         }
+    }
+
+    public func toggleFilterFavorites() {
+        isFiltered = !isFiltered
+        updateFiltered()
+        onUpdate?()
+    }
+
+    private func updateFiltered() {
+        filteredMovies = movies.filter({ favorites.contains("\($0.id)") })
     }
 }
 

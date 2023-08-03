@@ -47,6 +47,7 @@ class NowPlayingVC: UIViewController {
     
     func setupNavigationBar() {
         self.navigationItem.title = "Now Playing"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: nowPlayingViewModel.filterTitle, image: nil, target: self, action: #selector(filterPressed))
     }
     
     func setupCollectionView() {
@@ -70,6 +71,11 @@ class NowPlayingVC: UIViewController {
     @MainActor
     func updateView() {
         self.collectionView.reloadData()
+    }
+
+    @objc func filterPressed() {
+        nowPlayingViewModel.toggleFilterFavorites()
+        self.navigationItem.rightBarButtonItem?.title = nowPlayingViewModel.filterTitle
     }
 }
 
