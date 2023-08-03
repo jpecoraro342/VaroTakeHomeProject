@@ -88,6 +88,7 @@ extension NowPlayingVC : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as? MovieCollectionViewCell ?? MovieCollectionViewCell()
         
         cell.configureWith(movie: nowPlayingViewModel.getCellViewModel(at: indexPath))
+        
         return cell
     }
 }

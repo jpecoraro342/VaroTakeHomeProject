@@ -25,8 +25,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return titleLabel
     }()
 
+    let favoriteButton = {
+        var favoriteButton = UIButton()
+        return favoriteButton
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        favoriteButton.addTarget(self, action: #selector(toggleFavorite), for: .touchUpInside)
 
         setupConstraints()
     }
@@ -61,6 +68,16 @@ class MovieCollectionViewCell: UICollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
+
+        contentView.addSubview(favoriteButton)
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            favoriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 40),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        contentView.bringSubviewToFront(favoriteButton)
     }
 }
 
@@ -69,19 +86,33 @@ extension MovieCollectionViewCell {
         movieViewModel = movie
 
         titleLabel.text = movie.title
-        updateImage(url: movie.posterUrl, id: movie.id)
+        if movie.isFavorite {
+            favoriteButton.setBackgroundImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            favoriteButton.setBackgroundImage(UIImage(systemName: "star"), for: .normal)
+        }
+        fetchImage(url: movie.posterUrl, id: movie.id)
     }
 
-    @MainActor
-    private func updateImage(url: URL, id: String) {
-        Task { [weak self] in
+    private func fetchImage(url: URL, id: String) {
+        Task.detached { [weak self] in
             guard let self = self else { return }
 
             if let image = await ImageDataService.shared.getImage(url: url) {
-                if id == self.movieViewModel?.id {
-                    self.imageView.image = image
-                }
+                await updateImage(image: image, id: id)
             }
         }
+    }
+
+    @MainActor
+    private func updateImage(image: UIImage, id: String) {
+        if id == self.movieViewModel?.id {
+            self.imageView.image = image
+        }
+    }
+
+    @objc func toggleFavorite() {
+        guard let movie = movieViewModel else { return }
+        movie.toggleFavorite(movie.id)
     }
 }

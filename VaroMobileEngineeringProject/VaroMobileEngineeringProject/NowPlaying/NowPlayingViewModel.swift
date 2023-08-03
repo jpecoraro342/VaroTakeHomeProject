@@ -29,7 +29,7 @@ class NowPlayingViewModel {
     public func getCellViewModel(at indexPath: IndexPath) -> MovieCellViewModel {
         guard indexPath.row < movies.count else {
             print("something really bad happened")
-            return MovieCellViewModel(id: "", title: "", posterUrl: Self.basePosterURL, isFavorite: false)
+            return MovieCellViewModel(id: "", title: "", posterUrl: Self.basePosterURL, isFavorite: false, toggleFavorite: { _ in })
         }
         
         let movie = movies[indexPath.row]
@@ -38,7 +38,20 @@ class NowPlayingViewModel {
             id: "\(movie.id)",
             title: movie.title,
             posterUrl: posterURL(posterPath: movie.posterPath),
-            isFavorite: favorites.contains("\(movie.id)"))
+            isFavorite: favorites.contains("\(movie.id)"),
+            toggleFavorite: { self.toggleFavorite(movieId: $0) })
+    }
+
+    public func toggleFavorite(movieId: String) {
+        var favorites = self.favorites
+        if favorites.contains(movieId) {
+            favorites.remove(movieId)
+        } else {
+            favorites.insert(movieId)
+        }
+
+        self.favorites = favorites
+        self.onUpdate?()
     }
     
     public func updateNowPlaying() {
@@ -47,8 +60,6 @@ class NowPlayingViewModel {
             onUpdate?()
         }
     }
-    
-    
 }
 
 extension NowPlayingViewModel {
@@ -64,4 +75,6 @@ struct MovieCellViewModel {
     let title: String
     let posterUrl: URL
     let isFavorite: Bool
+
+    let toggleFavorite: (String) -> Void
 }
