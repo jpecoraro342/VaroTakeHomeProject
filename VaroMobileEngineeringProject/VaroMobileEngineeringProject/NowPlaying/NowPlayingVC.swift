@@ -9,12 +9,23 @@ import UIKit
 
 class NowPlayingVC: UIViewController {
 
+    let nowPlayingViewModel = NowPlayingViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupNavigationBar()
         setupView()
         setupCollectionView()
+        setupViewModel()
+    }
+
+    func setupViewModel() {
+        nowPlayingViewModel.onUpdate = {
+            self.updateView()
+        }
+
+        nowPlayingViewModel.updateNowPlaying()
     }
 
     func setupView() {
