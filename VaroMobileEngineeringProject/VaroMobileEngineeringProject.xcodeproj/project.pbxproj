@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		1587985A2A7BDFEB004407FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158798592A7BDFEB004407FE /* AppDelegate.swift */; };
 		1587985C2A7BDFEB004407FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587985B2A7BDFEB004407FE /* SceneDelegate.swift */; };
-		1587985E2A7BDFEB004407FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587985D2A7BDFEB004407FE /* ViewController.swift */; };
-		158798612A7BDFEB004407FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1587985F2A7BDFEB004407FE /* Main.storyboard */; };
+		1587985E2A7BDFEB004407FE /* NowPlayingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1587985D2A7BDFEB004407FE /* NowPlayingVC.swift */; };
 		158798632A7BDFEC004407FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158798622A7BDFEC004407FE /* Assets.xcassets */; };
 		158798662A7BDFEC004407FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158798642A7BDFEC004407FE /* LaunchScreen.storyboard */; };
+		158798722A7BE277004407FE /* NowPlayingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158798712A7BE277004407FE /* NowPlayingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		158798562A7BDFEB004407FE /* VaroMobileEngineeringProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaroMobileEngineeringProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158798592A7BDFEB004407FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1587985B2A7BDFEB004407FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1587985D2A7BDFEB004407FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		158798602A7BDFEB004407FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1587985D2A7BDFEB004407FE /* NowPlayingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingVC.swift; sourceTree = "<group>"; };
 		158798622A7BDFEC004407FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		158798652A7BDFEC004407FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		158798672A7BDFEC004407FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		158798712A7BE277004407FE /* NowPlayingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +56,47 @@
 		158798582A7BDFEB004407FE /* VaroMobileEngineeringProject */ = {
 			isa = PBXGroup;
 			children = (
-				158798592A7BDFEB004407FE /* AppDelegate.swift */,
-				1587985B2A7BDFEB004407FE /* SceneDelegate.swift */,
-				1587985D2A7BDFEB004407FE /* ViewController.swift */,
-				1587985F2A7BDFEB004407FE /* Main.storyboard */,
+				1587986F2A7BE041004407FE /* Networking */,
+				1587986E2A7BE03B004407FE /* Utilities */,
+				1587986D2A7BE02B004407FE /* Startup Delegate */,
+				158798702A7BE054004407FE /* NowPlaying */,
 				158798622A7BDFEC004407FE /* Assets.xcassets */,
 				158798642A7BDFEC004407FE /* LaunchScreen.storyboard */,
 				158798672A7BDFEC004407FE /* Info.plist */,
 			);
 			path = VaroMobileEngineeringProject;
+			sourceTree = "<group>";
+		};
+		1587986D2A7BE02B004407FE /* Startup Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				158798592A7BDFEB004407FE /* AppDelegate.swift */,
+				1587985B2A7BDFEB004407FE /* SceneDelegate.swift */,
+			);
+			path = "Startup Delegate";
+			sourceTree = "<group>";
+		};
+		1587986E2A7BE03B004407FE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1587986F2A7BE041004407FE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		158798702A7BE054004407FE /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				1587985D2A7BDFEB004407FE /* NowPlayingVC.swift */,
+				158798712A7BE277004407FE /* NowPlayingViewModel.swift */,
+			);
+			path = NowPlaying;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +159,6 @@
 			files = (
 				158798662A7BDFEC004407FE /* LaunchScreen.storyboard in Resources */,
 				158798632A7BDFEC004407FE /* Assets.xcassets in Resources */,
-				158798612A7BDFEB004407FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +169,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1587985E2A7BDFEB004407FE /* ViewController.swift in Sources */,
+				158798722A7BE277004407FE /* NowPlayingViewModel.swift in Sources */,
+				1587985E2A7BDFEB004407FE /* NowPlayingVC.swift in Sources */,
 				1587985A2A7BDFEB004407FE /* AppDelegate.swift in Sources */,
 				1587985C2A7BDFEB004407FE /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +179,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1587985F2A7BDFEB004407FE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				158798602A7BDFEB004407FE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		158798642A7BDFEC004407FE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +316,6 @@
 				INFOPLIST_FILE = VaroMobileEngineeringProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +343,6 @@
 				INFOPLIST_FILE = VaroMobileEngineeringProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
